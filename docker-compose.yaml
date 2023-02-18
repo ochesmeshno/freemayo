@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  bot:
+    image: python:3.8
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./bot:/bot
+    command: python /bot/bot.py
+
+  db:
+    image: mysql:5.7
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: bot_db
+    volumes:
+      - ./db:/var/lib/mysql
